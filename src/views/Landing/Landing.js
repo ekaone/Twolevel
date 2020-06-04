@@ -1,4 +1,5 @@
 import React from "react";
+// Material UI
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -7,28 +8,13 @@ import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
-import StarIcon from "@material-ui/icons/StarBorder";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
+// modules
 import { useStyles } from "./styles";
-
-const tiers = [
-  {
-    title: "REST API",
-    description: [
-      { id: 1, name: "Random data", url: "https://api.twolevel.net/faker" },
-      { id: 2, name: "Todos", url: "https://api.twolevel.net/todos" },
-      { id: 3, name: "Quotes", url: "https://api.twolevel.net/quotes" },
-      { id: 4, name: "Albums", url: "https://api.twolevel.net/albums" }
-    ],
-    buttonText: "More",
-    buttonVariant: "outlined",
-    buttonUrl: "https://api.twolevel.net/"
-  }
-];
+import { tiersCard, tiersHeaderNavigation } from "./vars";
 
 export default function Landing() {
   const classes = useStyles();
@@ -52,37 +38,22 @@ export default function Landing() {
             Twolevel
           </Typography>
           <nav>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="https://twitter.com/dannyeka"
-              className={classes.link}
-              target="_blank"
-            >
-              Twitter
-            </Link>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="https://discord.gg/uGGfKJ"
-              className={classes.link}
-              target="_blank"
-            >
-              Discord
-            </Link>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="https://www.ekaprasetia.com/"
-              className={classes.link}
-              target="_blank"
-            >
-              Blog
-            </Link>
+            {tiersHeaderNavigation.map(tier => (
+              <Link
+                key={tier.id}
+                variant="button"
+                color="textPrimary"
+                href={tier.url}
+                className={classes.link}
+                target="_blank"
+              >
+                {tier.title}
+              </Link>
+            ))}
           </nav>
         </Toolbar>
       </AppBar>
-      {/* Hero unit */}
+      {/* Container */}
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography
           component="h1"
@@ -91,19 +62,17 @@ export default function Landing() {
           color="textPrimary"
           gutterBottom
         >
-          My Collections
+          Collections
         </Typography>
       </Container>
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} justify="center">
-          {tiers.map(tier => (
+          {tiersCard.map(tier => (
             <Grid item key={tier.id} xs={12} md={4}>
               <Card>
                 <CardHeader
                   title={tier.title}
-                  subheader={tier.subheader}
                   titleTypographyProps={{ align: "center" }}
-                  subheaderTypographyProps={{ align: "center" }}
                   className={classes.cardHeader}
                 />
                 <CardContent>
