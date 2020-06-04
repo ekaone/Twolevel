@@ -6,3 +6,6 @@ Collection of my small scratch at [Twolevel](https://twolevel.net/)
 ## Status
 🛠 Work in progress
 
+## Author
+Welcome my [Blog](https://www.ekaprasetia.com/)
+
